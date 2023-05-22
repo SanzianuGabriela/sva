@@ -18,18 +18,18 @@ Realizarea unui sistem de vedere artificială care să permită testarea algorit
 
 ##  Algoritmii folosiți:
 
-+ Filtru Gaussian
+**+ Filtru Gaussian**
 
 Această metodă utilizează un filtru gaussian pentru a estima zgomotul într-o imagine sau semnal. Filtrul gaussian aplică o medie ponderată a valorilor pixelilor în vecinătatea fiecărui pixel, reducând astfel diferențele bruste între pixeli. Acest tip de filtru este eficient în atenuarea zgomotului de tip aditiv, cum ar fi zgomotul gaussiano-aderent.
 
- + Filtru Aritmetic
+ **+ Filtru Aritmetic**
 
 Această metodă utilizează o medie aritmetică a valorilor pixelilor dintr-o vecinătate pentru a reduce zgomotul. Fiecare pixel este înlocuit cu media valorilor vecine, inclusiv propria sa valoare. Această tehnică este simplă și ușor de implementat, dar poate duce la pierderea detaliilor fine din imagine.
 
-+ Filtru Median
+**+ Filtru Median**
 
 Această metodă utilizează mediana valorilor pixelilor dintr-o vecinătate pentru a estima valoarea corectă a unui pixel și a reduce zgomotul. Valorile pixelilor sunt sortate în ordine crescătoare sau descrescătoare, iar valoarea mediană (valoarea centrală) este atribuită pixelului. Această tehnică este eficientă în eliminarea zgomotului impulsiv, cum ar fi zgomotul de impuls sau salt.
 
-+ Filtru Geometric
+**+ Filtru Geometric**
 
 Această metodă utilizează o medie geometrică a valorilor pixelilor dintr-o vecinătate pentru a reduce zgomotul. Acest tip de filtru calculează radicalul valorilor pixelilor în vecinătatea fiecărui pixel și atribuie valoarea pixelului rezultatul acestei medii geometrice. Această tehnică poate fi eficientă în atenuarea zgomotului de tip multiplicative.
