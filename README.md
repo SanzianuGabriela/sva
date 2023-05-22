@@ -40,4 +40,4 @@ DNCNN (Deep Convolutional Neural Network) este o arhitectură de rețea neurală
 DNCNN se bazează pe rețele convoluționale profunde, care sunt arhitecturi de rețele neurale ce utilizează straturi de convoluții pentru a extrage caracteristici din imagini. Acest model utilizează ideea de învățare reziduală (residual learning), în care se încearcă să se învețe diferența (reziduul) dintre imaginea zgomotoasă și imaginea curată. Prin urmare, rețeaua se antrenează să învețe să genereze un reziduu corectat care poate fi adăugat apoi la imaginea zgomotoasă inițială pentru a obține imaginea denoisată.
 
 
-![Arhitectura DNCNN](https://github.com/SanzianuGabriela/sva/blob/main/DNCNN-arhitectura.png)
+![Arhitectura DNCNN](https://raw.githubusercontent.com/SanzianuGabriela/sva/main/DNCNN-arhitectura.png)
