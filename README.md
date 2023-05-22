@@ -5,9 +5,11 @@ Zgomotul este un semnal aleator, care afectează informația utilă conținută
 într-o imagine. El poate apare de-a lungul unui lanț de transmisiune, sau
 prin codarea și decodarea imaginii, și reprezintă un element perturbator nedorit. De obicei se încearcă eliminarea lui prin diverse metode de filtrare.
 
-## Scopul proiectului:
+
+##  Scopul proiectului:
 
 Realizarea unui sistem de vedere artificială care să permită testarea algoritmilor de atenuare a zgomotului pe o baza de date cu imagini zgomotoase.
+
 
 ##  Algoritmii folosiți:
 
