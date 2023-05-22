@@ -11,7 +11,7 @@ prin codarea și decodarea imaginii, și reprezintă un element perturbator nedo
 Realizarea unui sistem de vedere artificială care să permită testarea algoritmilor de atenuare a zgomotului pe o baza de date cu imagini zgomotoase.
 
 
-##  Algoritmii folosiți:
+# Algoritmii folosiți:
 
 
 1) Filtru Gaussian
