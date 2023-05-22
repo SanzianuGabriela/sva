@@ -33,3 +33,11 @@ Această metodă utilizează mediana valorilor pixelilor dintr-o vecinătate pen
 + **Filtru Geometric**
 
 Această metodă utilizează o medie geometrică a valorilor pixelilor dintr-o vecinătate pentru a reduce zgomotul. Acest tip de filtru calculează radicalul valorilor pixelilor în vecinătatea fiecărui pixel și atribuie valoarea pixelului rezultatul acestei medii geometrice. Această tehnică poate fi eficientă în atenuarea zgomotului de tip multiplicative.
+
++ **DNCNN** 
+
+DNCNN (Deep Convolutional Neural Network) este o arhitectură de rețea neurală profundă folosită în domeniul prelucrării imaginilor, în special în ceea ce privește denoise-ul (eliminarea zgomotului) în imagini. 
+DNCNN se bazează pe rețele convoluționale profunde, care sunt arhitecturi de rețele neurale ce utilizează straturi de convoluții pentru a extrage caracteristici din imagini. Acest model utilizează ideea de învățare reziduală (residual learning), în care se încearcă să se învețe diferența (reziduul) dintre imaginea zgomotoasă și imaginea curată. Prin urmare, rețeaua se antrenează să învețe să genereze un reziduu corectat care poate fi adăugat apoi la imaginea zgomotoasă inițială pentru a obține imaginea denoisată.
+
+
+![Arhitectura DNCNN](DNCNN-arhitectura.jpg)
