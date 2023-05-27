@@ -15,10 +15,10 @@ def denoise_gaussian(image):
     return denoised_gaussian
 
 
-def denoise_median_arith(image, kernel_size=3):
+def denoise_media_aritmetica(image):
     # aplicăm filtrul de medie aritmetică
     image = np.float32(image)
-    denoised_median_arith = cv2.medianBlur(image, kernel_size)
+    denoised_median_arith = cv2.blur(image, (3,3))
 
     return denoised_median_arith
 
@@ -41,6 +41,34 @@ def denoise_median(image, kernel_size=3):
     denoised_median = cv2.medianBlur(image, kernel_size)
 
     return denoised_median
+
+def apply_harmonic_mean_filter(image, kernel_size=3):
+    height, width, channels = image.shape
+    border = kernel_size // 2
+    filtered_image = np.zeros_like(image)
+
+    for i in range(border, height - border):
+        for j in range(border, width - border):
+            neighborhood = image[i - border:i + border + 1, j - border:j + border + 1, :]
+            harmonic_mean = 1 / np.mean(1 / (neighborhood), axis=(0, 1))
+            filtered_image[i, j, :] = harmonic_mean
+
+    return filtered_image
+
+def apply_contraharmonic_mean_filter(image, kernel_size=3, q=1):
+    height, width, channels = image.shape
+    border = kernel_size // 2
+    filtered_image = np.zeros_like(image)
+
+    for i in range(border, height - border):
+        for j in range(border, width - border):
+            neighborhood = image[i - border:i + border + 1, j - border:j + border + 1, :]
+            numerator = np.sum(neighborhood**(q + 1), axis=(0, 1))
+            denominator = np.sum(neighborhood**q, axis=(0, 1))
+            contraharmonic_mean = numerator / denominator
+            filtered_image[i, j, :] = contraharmonic_mean
+
+    return filtered_image
 
 
 #@st.cache
@@ -161,7 +189,7 @@ def prediction_ui(gt):
         st.success('PSNR-ul imaginii cu zgomot : %.3f db' % PSNR(ground_truth, noisy_image))
 
     model = st.sidebar.radio("Alege un algoritm",
-                             ('Gaussian', 'Aritmetic', 'Median', 'Geometric', 'DNCNN'),
+                             ('Gaussian', 'Aritmetic', 'Median', 'Geometric', 'Media Armonică', 'Media Contra Armonică', 'DNCNN'),
                              0)
 
     submit = st.sidebar.button('Afișează rezultatul')
@@ -203,7 +231,7 @@ def prediction_ui(gt):
             progress_bar = st.progress(0)
             start = time.time()
             progress_bar.progress(10)
-            denoised_image = denoise_median_arith(noisy_image)
+            denoised_image = denoise_media_aritmetica(noisy_image)
             progress_bar.progress(40)
             end = time.time()
             st.header('Imagine după aplicarea filtrului Aritmetic')
@@ -237,6 +265,36 @@ def prediction_ui(gt):
             progress_bar.progress(40)
             end = time.time()
             st.header('Imagine după aplicarea filtrului Geometric')
+
+            st.image(denoised_image)
+            st.success('PSNR-ul imaginii: %.3f db  ' % (PSNR(ground_truth, denoised_image)))
+
+            progress_bar.progress(100)
+            progress_bar.empty()
+
+        elif model == 'Media Armonică':
+            progress_bar = st.progress(0)
+            start = time.time()
+            progress_bar.progress(10)
+            denoised_image = apply_harmonic_mean_filter(noisy_image)
+            progress_bar.progress(40)
+            end = time.time()
+            st.header('Imagine după aplicarea filtrului Media Armonică')
+
+            st.image(denoised_image)
+            st.success('PSNR-ul imaginii: %.3f db  ' % (PSNR(ground_truth, denoised_image)))
+
+            progress_bar.progress(100)
+            progress_bar.empty()
+
+        elif model == 'Media Contra Armonică':
+            progress_bar = st.progress(0)
+            start = time.time()
+            progress_bar.progress(10)
+            denoised_image = apply_contraharmonic_mean_filter(noisy_image)
+            progress_bar.progress(40)
+            end = time.time()
+            st.header('Imagine după aplicarea filtrului Media Contra Armonică')
 
             st.image(denoised_image)
             st.success('PSNR-ul imaginii: %.3f db  ' % (PSNR(ground_truth, denoised_image)))
