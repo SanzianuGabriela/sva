@@ -243,7 +243,7 @@ def prediction_ui(gt):
             progress_bar.progress(100)
             progress_bar.empty()
 
-@st.cache_data(show_spinner=False)
+@st.experimental_memo(show_spinner=False)
 def get_file_content_as_string(path):
     url = 'https://raw.githubusercontent.com/SanzianuGabriela/sva/main/' + path
     response = urllib.request.urlopen(url)
