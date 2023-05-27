@@ -10,7 +10,7 @@ def denoise_gaussian(image):
 
 
     # aplicăm filtrul Gaussian
-    denoised_gaussian = cv2.GaussianBlur(image, (5, 5), 0)
+    denoised_gaussian = cv2.GaussianBlur(image, (5,5), 0)
 
     return denoised_gaussian
 
@@ -153,7 +153,8 @@ def prediction_ui(gt):
     noise_level = st.sidebar.slider("Alegeți nivelul de zgomot", 0, 45, 0)
 
     ground_truth, noisy_image, patches_noisy = get_image(gt, noise_level=noise_level)
-    st.header('Imaginea Originală')
+    header_title = 'Imagine Zgomotoasă' if noise_level != 0 else 'Imagine Originală'
+    st.header(header_title)
     st.markdown('** Nivelul de zgomot : ** `%d`  ( Nivelul 0 va reprezenta imaginea originală )' % (noise_level))
     st.image(noisy_image)
     if noise_level != 0:
@@ -243,7 +244,7 @@ def prediction_ui(gt):
             progress_bar.progress(100)
             progress_bar.empty()
 
-@st.experimental_memo(show_spinner=False)
+@st.cache_data(show_spinner=False)
 def get_file_content_as_string(path):
     url = 'https://raw.githubusercontent.com/SanzianuGabriela/sva/main/' + path
     response = urllib.request.urlopen(url)
