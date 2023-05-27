@@ -45,7 +45,7 @@ def denoise_median(image, kernel_size=3):
 
 #@st.cache
 def get_model():
-    dncnn = tf.keras.models.load_model(r"C:\Users\gabri\OneDrive\Desktop\sva\dncnn.h5")
+    dncnn = tf.keras.models.load_model("dncnn.h5")
     return dncnn
 
 
@@ -255,7 +255,7 @@ def main():
 
     selected_box = st.sidebar.selectbox(
         'Alege o opțiune..',
-        ('Despre proiect', 'Algoritmi')
+        ('Despre proiect', 'Algoritmi', 'Vezi codul sursa')
     )
 
     readme_text = st.markdown(get_file_content_as_string("README.md"))
@@ -264,6 +264,10 @@ def main():
     if selected_box == 'Algoritmi':
         readme_text.empty()
         models()
+    if selected_box == 'Vezi codul sursa':
+        readme_text.empty()
+        st.code(get_file_content_as_string("main.py"))
+
 
 
 if __name__ == "__main__":
